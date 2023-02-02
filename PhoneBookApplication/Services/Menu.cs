@@ -1,4 +1,5 @@
-﻿using PhoneBookApplication.Interfaces;
+﻿using Newtonsoft.Json;
+using PhoneBookApplication.Interfaces;
 using PhoneBookApplication.Models;
 
 namespace PhoneBookApplication.Services;
@@ -6,6 +7,9 @@ namespace PhoneBookApplication.Services;
 internal class Menu
 {
     private List<IContact> contacts = new List<IContact>();
+    private FileService file = new FileService();
+
+    public string FilePath { get; set; } = null!;
     public void MainMenu()
     {
         Console.Clear();
@@ -43,14 +47,32 @@ internal class Menu
         contact.Email = Console.ReadLine() ?? "";
         
         contacts.Add(contact);
+        file.SaveContact(FilePath, JsonConvert.SerializeObject(contacts));
+
         Console.Clear();
-        Console.WriteLine("\nKontakt lades till i telefonboken.\nTryck på valfri tangent för att komma till huvudmenyn");
+        Console.WriteLine("\nKontakt lades till i telefonboken.\nTryck på valfri tangent för att komma till huvudmenyn.");
         Console.ReadKey();
     }
     private void Two()
     {
         Console.Clear();
-        Console.WriteLine("Sök på en kontakt");
+        
+        Console.WriteLine("Sök på en kontakt\n");
+        Console.WriteLine("Ange Förnamn:");
+        var firstName = Console.ReadLine();
+        Console.WriteLine("Ange Efternamn:");
+        var lastName = Console.ReadLine();
+
+        var contact = contacts.FirstOrDefault(c => c.FirstName == firstName && c.LastName == lastName);
+        if (contact != null)
+        {
+            Console.WriteLine("Kontakten kunde inte hittas.");
+        }
+        else
+        {
+            Console.WriteLine($"Förnamn: {contact.FirstName}\nEfternamn: {contact.LastName}\n Adress: {contact.Adress}\n Telefonnummer: {contact.PhoneNumber}\n E-postadress: {contact.Email}");
+        }
+        Console.WriteLine("\nTryck på valfri tangent för att komma till huvudmenyn");
         Console.ReadKey();
     }
     private void Three()
