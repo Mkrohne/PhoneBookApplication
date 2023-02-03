@@ -11,15 +11,34 @@ namespace PhoneBookApplication.Services
         private readonly string FilePath;
 
         public FileService(string filePath)
+
         {
-            filePath = FilePath;
+            FilePath = filePath;
             contacts = new List<Contact>();
         }
-        public void SaveContact(string filePath, string content) 
+        public void SaveContact(List<Contact> contacts) 
         { 
-            using var sw = new StreamWriter(filePath);
-            sw.Write(content);
+            using var sw = new StreamWriter(FilePath);
+            sw.Write(JsonConvert.SerializeObject(contacts));
         }
+
+        public List<Contact> Read()
+        {
+            try
+            {
+                using var sr = new StreamReader(FilePath);
+                contacts = JsonConvert.DeserializeObject<List<Contact>>(sr.ReadToEnd())!;
+            }
+            catch { contacts = new List<Contact>(); }
+
+            return contacts;
+        }
+        //public void ShowAll(string filePath)
+        //{
+        //    using var sw = new StreamWriter(filePath);
+            
+
+        //}
         public Contact GetContact(string filePath, string firstName, string lastName)
         {
             try
@@ -39,6 +58,29 @@ namespace PhoneBookApplication.Services
             }
             catch { }
             return null!;
+        }
+        public void Delete(string firstName, string lastName)
+        {
+            try
+            {
+                var tempFile = Path.GetTempFileName();
+                using (var sr = new StreamReader(FilePath))
+                using (var sw = new StreamWriter(tempFile))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        var contact = JsonConvert.DeserializeObject<Contact>(line);
+                        if (contact.FirstName != firstName || contact.LastName != lastName)
+                        {
+                            sw.WriteLine(line);
+                        }
+                    }
+                }
+                File.Delete(FilePath);
+                File.Move(tempFile, FilePath);
+            }
+            catch { }
         }
     }
 }

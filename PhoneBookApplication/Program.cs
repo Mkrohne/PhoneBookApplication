@@ -3,9 +3,9 @@
 var menu = new Menu();
 //menu.FilePath = @$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\pbList.json";
 
-Console.Clear();
 
 while (true)
 {
+    Console.Clear();
     menu.MainMenu();
 }
