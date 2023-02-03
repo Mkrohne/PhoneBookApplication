@@ -1,16 +1,20 @@
 ﻿using Newtonsoft.Json;
 using PhoneBookApplication.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PhoneBookApplication.Services
 {
 
     internal class FileService
     {
+        private List<Contact> contacts;
+        private readonly string FilePath;
+
+        public FileService(string filePath)
+        {
+            filePath = FilePath;
+            contacts = new List<Contact>();
+        }
         public void SaveContact(string filePath, string content) 
         { 
             using var sw = new StreamWriter(filePath);

@@ -23,14 +23,14 @@ internal class Menu
 
         switch(option)
         {
-            case "1": One(); break;
-            case "2": Two(); break;
-            case "3": Three(); break;
-            case "4": Four(); break;
+            case "1": Add(); break;
+            case "2": Search(); break;
+            case "3": ShowAll(); break;
+            case "4": Remove(); break;
 
         }
     }
-    private void One()
+    private void Add()
     {
         Console.Clear();
         Console.WriteLine("Lägg till ny kontakt\n");
@@ -53,10 +53,10 @@ internal class Menu
         Console.WriteLine("\nKontakt lades till i telefonboken.\nTryck på valfri tangent för att komma till huvudmenyn.");
         Console.ReadKey();
     }
-    private void Two()
+    private void Search()
     {
         Console.Clear();
-        
+                
         Console.WriteLine("Sök på en kontakt\n");
         Console.WriteLine("Ange Förnamn:");
         var firstName = Console.ReadLine();
@@ -75,13 +75,13 @@ internal class Menu
         Console.WriteLine("\nTryck på valfri tangent för att komma till huvudmenyn");
         Console.ReadKey();
     }
-    private void Three()
+    private void ShowAll()
     {
         Console.Clear();
         Console.WriteLine("Visa alla kontakter");
         Console.ReadKey();
     }
-    private void Four()
+    private void Remove()
     {
         Console.Clear();
         Console.WriteLine("Ta bort en kontakt");
