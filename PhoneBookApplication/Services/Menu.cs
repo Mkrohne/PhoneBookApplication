@@ -14,7 +14,7 @@ internal class Menu
     {
         Console.Clear();
         file.Read();
-        Console.WriteLine("Välkommen till Telefonboken\n\n");
+        Console.WriteLine("Välkommen till Telefonboken\n");
         Console.WriteLine("[1] Lägg till kontakt");
         Console.WriteLine("[2] Sök på en kontakt");
         Console.WriteLine("[3] Visa alla kontakter");
@@ -50,10 +50,10 @@ internal class Menu
         contacts.Add(contact);
         file.SaveContact(contacts);
         file.Read();
-        //file.SaveContact(FilePath, JsonConvert.SerializeObject(contacts));
+        
 
         Console.Clear();
-        Console.WriteLine("\nKontakt lades till i telefonboken.\nTryck på valfri tangent för att komma till huvudmenyn.");
+        Console.WriteLine("Kontakt lades till i telefonboken.\nTryck på valfri tangent för att komma till huvudmenyn.");
         Console.ReadKey();
     }
     private void Search()
@@ -66,14 +66,15 @@ internal class Menu
         Console.WriteLine("Ange Efternamn:");
         var lastName = Console.ReadLine();
 
-        var contact = contacts.FirstOrDefault(c => c.FirstName.ToLower() == firstName && c.LastName.ToLower() == lastName);
+        var contact = contacts.FirstOrDefault(c => c.FirstName == firstName && c.LastName == lastName);
         if (contact == null)
         {
             Console.WriteLine("Kontakten kunde inte hittas.");
         }
         else
         {
-            Console.WriteLine($"Förnamn: {contact.FirstName}\nEfternamn: {contact.LastName}\n Adress: {contact.Adress}\n Telefonnummer: {contact.PhoneNumber}\n E-postadress: {contact.Email}");
+            Console.Clear() ;
+            Console.WriteLine($"Förnamn: {contact.FirstName}\nEfternamn: {contact.LastName}\nAdress: {contact.Adress}\nTelefonnummer: {contact.PhoneNumber}\nE-postadress: {contact.Email}");
         }
         Console.WriteLine("\nTryck på valfri tangent för att komma till huvudmenyn");
         Console.ReadKey();
@@ -82,7 +83,7 @@ internal class Menu
     {
         Console.Clear();
         contacts = file.Read();
-        Console.WriteLine("Visa alla kontakter");
+        Console.WriteLine("Visar alla kontakter\n");
         if (contacts.Count == 0)
         {
             Console.WriteLine("Det finns inga kontaker");
@@ -91,16 +92,17 @@ internal class Menu
         {
             foreach (Contact contact in contacts)
             {
-                Console.WriteLine($"Förnamn: {contact.FirstName}\nEfternamn: {contact.LastName}\n Adress: {contact.Adress}\n Telefonnummer: {contact.PhoneNumber}\n E-postadress: {contact.Email}");
+                Console.WriteLine($"Förnamn: {contact.FirstName}\nEfternamn: {contact.LastName}\nAdress: {contact.Adress}\nTelefonnummer: {contact.PhoneNumber}\nE-postadress: {contact.Email}");
+                Console.WriteLine("\nTryck på valfri tangent för att gå till huvudmenyn");
             }
         }
-        file.Read();
+        //file.Read();
         Console.ReadKey();
     }
     private void Remove()
     {
         Console.Clear();
-        Console.WriteLine("Ta bort en kontakt");
+        Console.WriteLine("Ta bort en kontakt\n");
         Console.WriteLine("Ange förnamn");
         var firstName = Console.ReadLine();
         Console.WriteLine("Ange efternamn");
@@ -109,27 +111,31 @@ internal class Menu
         var contact = contacts.FirstOrDefault(c => c.FirstName.ToLower() == firstName && c.LastName.ToLower() == lastName);
         if (contact == null)
         {
+            Console.Clear();
             Console.WriteLine("Kontaken hittades inte");
         }
         else
         {
-            Console.WriteLine("Är du säker på att du vill ta bort denna kontakt? (y/n)");
+            Console.Clear() ;
+            Console.WriteLine($"Är du säker på att du vill ta bort: '{firstName} {lastName}'? (y/n)");
             var confirm = Console.ReadLine();
 
             if (confirm.ToLower() == "y")
             {
                 contacts.Remove(contact);
                 file.Delete(firstName, lastName);
-                Console.WriteLine("Kontakten har tagits bort.");
+                Console.Clear();
+                Console.WriteLine($"Kontakten: '{firstName} {lastName}' har tagits bort.");
                 file.SaveContact(contacts);
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Ingen kontakt togs bort");
             }
         }
         file.Read();
-        Console.WriteLine("Tryck på valfri tanget för att gå tillbaka.");
+        Console.WriteLine("\nTryck på valfri tanget för att gå till huvudmenyn.");
         Console.ReadKey();
     }
 }

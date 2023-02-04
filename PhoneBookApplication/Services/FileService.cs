@@ -33,12 +33,7 @@ namespace PhoneBookApplication.Services
 
             return contacts;
         }
-        //public void ShowAll(string filePath)
-        //{
-        //    using var sw = new StreamWriter(filePath);
-            
 
-        //}
         public Contact GetContact(string filePath, string firstName, string lastName)
         {
             try
