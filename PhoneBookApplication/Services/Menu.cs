@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using PhoneBookApplication.Interfaces;
+﻿
 using PhoneBookApplication.Models;
 
 namespace PhoneBookApplication.Services;
