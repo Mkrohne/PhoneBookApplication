@@ -18,12 +18,12 @@
             return string.Empty;
         }
 
-        public void Save(string content)
+        public void Save(string contacts)
         {
             if (!string.IsNullOrEmpty(FilePath))
             {
                 using var sw = new StreamWriter(FilePath);
-                sw.Write(content);
+                sw.Write(contacts);
             }
         }
     }

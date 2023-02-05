@@ -15,7 +15,7 @@ namespace ConsoleApp.Tests__MSTest
         public void Should_Create_a_File_With_Json_Content()
         {
             //arrange
-            FileManager fileManager = new FileManager();
+            FileService fileManager = new FileService();
             fileManager.FilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content.json";
             string content = JsonConvert.SerializeObject(new { FirstName = "Marcus", LastName = "Krohné" });
 

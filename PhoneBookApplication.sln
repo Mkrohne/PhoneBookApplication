@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookApplication", "PhoneBookApplication\PhoneBookApplication.csproj", "{CC573D38-825A-4FCA-9E4C-C1E70184C938}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsolApp.Test_xUnit", "..\MSTest\ConsolApp.Test_xUnit\ConsolApp.Test_xUnit.csproj", "{CB00B09B-F3A5-49B8-94C9-00B0FAEC83B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsolApp.Test_xUnit", "MSTest\ConsolApp.Test_xUnit\ConsolApp.Test_xUnit.csproj", "{002A2833-C399-4CDF-B73C-2E7D5475AA90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{CC573D38-825A-4FCA-9E4C-C1E70184C938}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC573D38-825A-4FCA-9E4C-C1E70184C938}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC573D38-825A-4FCA-9E4C-C1E70184C938}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB00B09B-F3A5-49B8-94C9-00B0FAEC83B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB00B09B-F3A5-49B8-94C9-00B0FAEC83B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB00B09B-F3A5-49B8-94C9-00B0FAEC83B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB00B09B-F3A5-49B8-94C9-00B0FAEC83B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002A2833-C399-4CDF-B73C-2E7D5475AA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002A2833-C399-4CDF-B73C-2E7D5475AA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002A2833-C399-4CDF-B73C-2E7D5475AA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002A2833-C399-4CDF-B73C-2E7D5475AA90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

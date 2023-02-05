@@ -6,14 +6,14 @@ namespace ConsoleApp.Tests__nUnit
 {
     public class FileManager_Tests
     {
-        FileManager fileManager;
+        FileService fileManager;
         string content;
 
         [SetUp]
         public void Setup()
         {
             //arrange
-            fileManager = new FileManager();
+            fileManager = new FileService();
             fileManager.FilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content.json";
             content = JsonConvert.SerializeObject(new { FirstName = "Marcus", LastName = "Krohné" });
 
