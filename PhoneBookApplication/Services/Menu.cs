@@ -1,6 +1,5 @@
 ﻿
 using PhoneBookApplication.Models;
-
 namespace PhoneBookApplication.Services;
 
 internal class Menu
@@ -8,7 +7,6 @@ internal class Menu
     private List<Contact> contacts = new List<Contact>();
     private FileService file = new FileService(@$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\pbList.json");
 
-    public string FilePath { get; set; } = null!;
     public void MainMenu()
     {
         Console.Clear();
@@ -17,7 +15,7 @@ internal class Menu
         Console.WriteLine("[1] Lägg till kontakt");
         Console.WriteLine("[2] Sök på en kontakt");
         Console.WriteLine("[3] Visa alla kontakter");
-        Console.WriteLine("[4] To bort en kontakt\n");
+        Console.WriteLine("[4] Ta bort en kontakt\n");
         Console.WriteLine("Välj en siffra enligt ovan för att göra det du önskar:");
         var option = Console.ReadLine();
 
@@ -52,7 +50,7 @@ internal class Menu
         
 
         Console.Clear();
-        Console.WriteLine("Kontakt lades till i telefonboken.\nTryck på valfri tangent för att komma till huvudmenyn.");
+        Console.WriteLine("Kontakt lades till i telefonboken.\n\nTryck på valfri tangent för att komma till huvudmenyn.");
         Console.ReadKey();
     }
     private void Search()
@@ -91,11 +89,11 @@ internal class Menu
         {
             foreach (Contact contact in contacts)
             {
-                Console.WriteLine($"Förnamn: {contact.FirstName}\nEfternamn: {contact.LastName}\nAdress: {contact.Adress}\nTelefonnummer: {contact.PhoneNumber}\nE-postadress: {contact.Email}");
-                Console.WriteLine("\nTryck på valfri tangent för att gå till huvudmenyn");
+                Console.WriteLine($"Förnamn: {contact.FirstName}\nEfternamn: {contact.LastName}\nAdress: {contact.Adress}\nTelefonnummer: {contact.PhoneNumber}\nE-postadress: {contact.Email}\n\n");
+                
             }
+            Console.WriteLine("\nTryck på valfri tangent för att gå till huvudmenyn");
         }
-        //file.Read();
         Console.ReadKey();
     }
     private void Remove()
@@ -107,7 +105,7 @@ internal class Menu
         Console.WriteLine("Ange efternamn");
         var lastName = Console.ReadLine();
 
-        var contact = contacts.FirstOrDefault(c => c.FirstName.ToLower() == firstName && c.LastName.ToLower() == lastName);
+        var contact = contacts.FirstOrDefault(c => c.FirstName == firstName && c.LastName == lastName);
         if (contact == null)
         {
             Console.Clear();
@@ -116,10 +114,10 @@ internal class Menu
         else
         {
             Console.Clear() ;
-            Console.WriteLine($"Är du säker på att du vill ta bort: '{firstName} {lastName}'? (y/n)");
+            Console.WriteLine($"Är du säker på att du vill ta bort: '{firstName} {lastName}'? (j/n)");
             var confirm = Console.ReadLine();
 
-            if (confirm.ToLower() == "y")
+            if (confirm.ToLower() == "j")
             {
                 contacts.Remove(contact);
                 file.Delete(firstName, lastName);
