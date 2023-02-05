@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp.Services
+﻿namespace ConsoleApp.Services
 {
-    public class FileManager
+    public class FileService
     {
         public string FilePath { get; set; } = string.Empty;
 
